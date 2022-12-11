@@ -1,0 +1,53 @@
+# Install ArmA 3 with steamcmd
+/steam/steamcmd.sh +login [UNAME] [PASSWD] +app_update 233780 +quit
+# Default install path:
+# ~/Steam/steamapps/common/Arma 3 Server
+# Call this ARMA
+
+# Make a mods folder
+mkdir ARMA/mods
+# We'll use this later :)
+
+# Install a mod
+/steam/steamcmd.sh +login [UNAME] [PASSWD] +workshop_download_item 107410 [MODCODE] +quit
+# Default install path:
+# ~/Steam/steamapps/workshop/content/107410
+# Call this MODS
+# MODCODE can be found in the steam page URL of the mod
+# steamdb.info can help
+
+# Link mod
+ln -sT MODS/MODCODE ARMA/mods/MODNAME
+# MODNAME is arbitrary, but must be unique.
+# Make it all lowercase letters :|
+
+# Load keys
+cp MODS/MODCODE/$(ls -1 MODS/MODCODE | grep -i key)/* ARMA/keys
+# There doesn't seem to be a standard among key keys Key or Keys.
+# grep -i should grabs the right folder name.
+
+# Build the modline
+-mod="mods/MODNAME;mods/MODNAME1;mods/MODNAME2"
+# Disable mods by removhing them from this line
+# With only one mod it would look like -mod="mods/MODNAME"
+
+# Verify file name normalization
+# Look at MODS/MODCODE/addons
+# If the server fails to run, try making these files lower case.
+# The server should throw an error that indicates these files are the issue.
+
+
+896660 Valheim
+1670340 Craftopia
+298740 Space Engineers
+105610 Terraria
+1275530 Deadside
+233780 ArmA
+1874900 ArmA Reforged
+
+
+107410 ArmA 3 client
+450814997 CBA_A3
+2841981280 Antistasi Ultimate Harvest Blue
+1388025252 MX Series Retexture
+894678801 task force arrowhead radio
