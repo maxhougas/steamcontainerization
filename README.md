@@ -6,7 +6,7 @@ RUN apt update &&\\\
     tar -xf steamcmd_linux.tar.gz &&\\\
     mv steamcmd.sh /steam &&\\\
     mv linux32 /steam &&\\\
-    rm steamcmd_linux.tar.gz
-WORKDIR /steam
+    rm steamcmd_linux.tar.gz\
+WORKDIR /steam\
 RUN ./steamcmd.sh +quit
 
